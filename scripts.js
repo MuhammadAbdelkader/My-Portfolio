@@ -41,9 +41,10 @@ themeToggle.addEventListener('click', () => {
 // ========================================
 // Create Particles
 // ========================================
+// Optimized Particle Creation (reduce from 50 to 20)
 function createParticles() {
   const particlesContainer = document.getElementById('particles');
-  const particleCount = 50;
+  const particleCount = 20; // Reduced for performance
 
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
@@ -54,6 +55,18 @@ function createParticles() {
     particlesContainer.appendChild(particle);
   }
 }
+
+// Use requestAnimationFrame for smooth scrolling
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      // Your scroll logic here
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
 createParticles();
 
 // ========================================
